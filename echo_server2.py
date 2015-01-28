@@ -38,7 +38,6 @@ def server(log_buffer=sys.stderr):
         sock.close()
         sys.exit(0)
 
-
 if __name__ == '__main__':
     server()
     sys.exit(0)
