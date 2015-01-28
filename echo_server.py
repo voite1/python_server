@@ -47,7 +47,11 @@ def server(log_buffer=sys.stderr):
                     #       formatting
                     data = conn.recv(16)
                     print >>log_buffer, 'received "{0}"'.format(data)
+
+                    # Sending data back
                     conn.sendall(data)
+                    
+                    # Check for end of the message to be sent back
                     if len(data) < 16:
                         break
                     # TODO: you will need to check here to see if any data was
@@ -63,11 +67,12 @@ def server(log_buffer=sys.stderr):
                 #       syntax problems
                 conn.close()
 
-    except KeyboardInterrupt:
+    except KeyboardInterrupt, SystemExit:
         # TODO: Use the python KeyboardIntterupt exception as a signal to
         #       close the server socket and exit from the server function.
         #       Replace the call to `pass` below, which is only there to
         #       prevent syntax problems
+        print "Exiting..."
         sock.close()
         sys.exit(0)
 
